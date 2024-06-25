@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Luas Lingkaran</title>
+    <link rel="stylesheet" href="style_persegi-panjang.css" />
+
+    <script type="text/javascript">
+      
+        count = () =>{
+        // mengambil nilai dari elemen (get value)
+          let jari = document.getElementById('jari').value;
+          let hasil = 3.14 * jari * jari;
+          
+          // menentukan nilai pada elemen (set value)
+          document.getElementById('hasil').value = hasil;
+        }
+    </script>  
+  </head>
+
+  <body>
+    <main>
+      <div class="box">
+        <div class="inner-box">
+          <div class="forms-wrap">
+            <form class="sign-in-form">
+  
+              <div class="heading">
+                <h2>Hello</h2>
+                <h6>Hitung lingkaran</h6>
+              </div>
+  
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input type="number" name="test_name" min="0" oninput="validity.valid||(value='');" id="jari" minlength="4" class="input-field" autocomplete="off" required />
+                  <label>Jari-jari</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input type="number"  id="hasil" minlength="4" class="input-field" autocomplete="off" disabled />
+                </div>
+  
+                <button type="button" onclick="count()" class="sign-btn">Hasil</button>
+                <button type="button" onclick="javascript:history.back()" class="sign-btn">Back</button>
+  
+              </div>
+            </form>
+  
+          </div>
+  
+          <div class="carousel">
+            <div class="thumb">
+                  <img src="./img/image1.png" class="image img-1" alt="" />
+                  <img src="./img/image2.png" class="image img-2" alt="" />
+                  <img src="./img/image3.png" class="image img-3" alt="" />
+              </div>
+  
+            <div class="text-slider">
+              <div class="text-wrap">
+                <div class="text-group">
+                  <h2>Luas = 3.14 x Jari x Jari </h2>
+                  <h2>Segitiga</h2>
+                  <h2>HEHEHEHE</h2>
+                </div>
+              </div>
+  
+              <div class="bullets">
+                <span class="active" data-value="1"></span>
+                <span data-value="2"></span>
+                <span data-value="3"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  
+    <!-- Javascript file -->
+  
+    <script>
+      const inputs = document.querySelectorAll(".input-field");
+      const toggle_btn = document.querySelectorAll(".toggle");
+      const main = document.querySelector("main");
+      const bullets = document.querySelectorAll(".bullets span");
+      const images = document.querySelectorAll(".image");
+  
+      inputs.forEach((inp) => {
+        inp.addEventListener("focus", () => {
+          inp.classList.add("active");
+        });
+        inp.addEventListener("blur", () => {
+          if (inp.value != "") return;
+          inp.classList.remove("active");
+        });
+      });
+  
+      toggle_btn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          main.classList.toggle("sign-up-mode");
+        });
+      });
+  
+      function moveSlider() {
+        let index = this.dataset.value;
+  
+        let currentImage = document.querySelector(`.img-${index}`);
+        images.forEach((img) => img.classList.remove("show"));
+        currentImage.classList.add("show");
+  
+        const textSlider = document.querySelector(".text-group");
+        textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+  
+        bullets.forEach((bull) => bull.classList.remove("active"));
+        this.classList.add("active");
+      }
+  
+      bullets.forEach((bullet) => {
+        bullet.addEventListener("click", moveSlider);
+      });
+  
+    </script>
+  </body>
+  
+  </html>
